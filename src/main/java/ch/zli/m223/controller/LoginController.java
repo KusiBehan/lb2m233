@@ -13,15 +13,15 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import ch.zli.m223.model.Credential;
-import ch.zli.m223.service.SessionService;
+import ch.zli.m223.service.LoginService;
 
-@Path("/session")
+@Path("/login")
 @Tag(name = "Session", description = "Handling of sessions")
 @PermitAll
-public class SessionController {
-  
+public class LoginController {
+
   @Inject
-  SessionService sessionService;
+  LoginService sessionService;
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)

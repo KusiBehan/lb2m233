@@ -15,7 +15,7 @@ import ch.zli.m223.model.Credential;
 import io.smallrye.jwt.build.Jwt;
 
 @ApplicationScoped
-public class SessionService {
+public class LoginService {
 
   @Inject
   ApplicationUserService applicationUserService;
@@ -29,11 +29,11 @@ public class SessionService {
             .issuer("https://zli.example.com/")
             .upn(credential.getEmail())
             .groups(new HashSet<>(Arrays.asList("User", "Admin")))
-            .expiresIn(Duration.ofHours(12))
+            .expiresIn(Duration.ofHours(24))
             .sign();
         return Response
             .ok(principal.get())
-            .cookie(new NewCookie("punchclock", token))
+            .cookie(new NewCookie("Coworking Space", token))
             .header("Authorization", "Bearer " + token)
             .build();
       }
