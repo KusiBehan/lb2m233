@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.core.NewCookie;
+// import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 
 import ch.zli.m223.model.ApplicationUser;
@@ -25,17 +25,32 @@ public class LoginService {
 
     try {
       if (principal.isPresent() && principal.get().getPassword().equals(credential.getPassword())) {
-        String token = Jwt
-            .issuer("https://zli.example.com/")
-            .upn(credential.getEmail())
-            .groups(new HashSet<>(Arrays.asList("User", "Admin")))
-            .expiresIn(Duration.ofHours(24))
-            .sign();
-        return Response
-            .ok(principal.get())
-            .cookie(new NewCookie("Coworking Space", token))
-            .header("Authorization", "Bearer " + token)
-            .build();
+        if (principal.get().getRole().equals("Mitglied")) {
+          String token = Jwt
+              .issuer("https://zli.example.com/")
+              .upn(credential.getEmail())
+              .groups(new HashSet<>(Arrays.asList("Mitglied")))
+              .expiresIn(Duration.ofHours(24))
+              .sign();
+          return Response
+              .ok(principal.get())
+              .header("Authorization", "Bearer " + token)
+              .entity(token)
+              .build();
+        }
+        if (principal.get().getRole().equals("Admin")) {
+          String token = Jwt
+              .issuer("https://zli.example.com/")
+              .upn(credential.getEmail())
+              .groups(new HashSet<>(Arrays.asList("Admin")))
+              .expiresIn(Duration.ofHours(24))
+              .sign();
+          return Response
+              .ok(principal.get())
+              .header("Authorization", "Bearer " + token)
+              .entity(token)
+              .build();
+        }
       }
     } catch (Exception e) {
       System.err.println("Couldn't validate password.");
