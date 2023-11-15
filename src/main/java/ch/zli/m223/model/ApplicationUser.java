@@ -12,7 +12,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Entity
 @NamedQueries({
-  @NamedQuery(name = "ApplicationUser.findByEmail", query = "SELECT u FROM ApplicationUser u WHERE u.email = :email")
+    @NamedQuery(name = "ApplicationUser.findByEmail", query = "SELECT u FROM ApplicationUser u WHERE u.email = :email")
 })
 public class ApplicationUser {
 
@@ -20,7 +20,7 @@ public class ApplicationUser {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Schema(readOnly = true)
   private Long id;
-  
+
   @Column(nullable = false, unique = true)
   private String email;
 
@@ -28,7 +28,29 @@ public class ApplicationUser {
   private String password;
 
   @Column
-  private String nickname;
+  private String FirstName;
+
+  @Column
+  private String LastName;
+
+  @Column
+  private String Role;
+
+  public String getRole() {
+    return Role;
+  }
+
+  public void setRole(String role) {
+    Role = role;
+  }
+
+  public String getLastName() {
+    return LastName;
+  }
+
+  public void setLastName(String lastName) {
+    LastName = lastName;
+  }
 
   public Long getId() {
     return id;
@@ -54,11 +76,11 @@ public class ApplicationUser {
     this.password = password;
   }
 
-  public String getNickname() {
-    return nickname;
+  public String getFirstName() {
+    return FirstName;
   }
 
-  public void setNickname(String nickname) {
-    this.nickname = nickname;
+  public void setFirstName(String firstname) {
+    this.FirstName = firstname;
   }
 }
