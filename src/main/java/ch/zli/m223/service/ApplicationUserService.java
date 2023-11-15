@@ -17,6 +17,7 @@ public class ApplicationUserService {
 
     @Transactional
     public ApplicationUser createUser(ApplicationUser user) {
+        user.setRole("Mitglied");
         return entityManager.merge(user);
     }
 
