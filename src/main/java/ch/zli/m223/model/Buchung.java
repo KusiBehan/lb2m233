@@ -2,6 +2,9 @@ package ch.zli.m223.model;
 
 import javax.persistence.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,8 +24,8 @@ public class Buchung {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "ApplicationUser_id")
-    private ApplicationUser user;
+    @JoinColumn(name = "user_id")
+    private ApplicationUser applicationUser;
 
     public LocalDateTime getDatum() {
         return datum;
@@ -57,10 +60,10 @@ public class Buchung {
     }
 
     public ApplicationUser getUser() {
-        return user;
+        return applicationUser;
     }
 
-    public void setUser(ApplicationUser user) {
-        this.user = user;
+    public void setUser(ApplicationUser applicationUser) {
+        this.applicationUser = applicationUser;
     }
 }
