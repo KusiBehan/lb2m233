@@ -24,4 +24,11 @@ public class BuchungService {
         var query = entityManager.createQuery("FROM Buchung", Buchung.class);
         return query.getResultList();
     }
+
+    @Transactional
+    public Buchung deleteBuchung(Long buchungId) {
+        Buchung stornierteBuchung = entityManager.find(Buchung.class, buchungId);
+        entityManager.remove(stornierteBuchung);
+        return stornierteBuchung;
+    }
 }

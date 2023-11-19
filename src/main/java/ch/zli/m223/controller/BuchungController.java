@@ -3,10 +3,12 @@ package ch.zli.m223.controller;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -24,7 +26,7 @@ import java.util.Optional;
 
 import ch.zli.m223.model.ApplicationUser;
 import ch.zli.m223.model.Buchung;
-import ch.zli.m223.service.ApplicationUserService;
+import ch.zli.m223.service.RegisterUserservice;
 import ch.zli.m223.service.BuchungService;
 
 @Path("/buchung")
@@ -36,7 +38,7 @@ public class BuchungController {
     BuchungService buchungService;
 
     @Inject
-    public ApplicationUserService applicationUserService;
+    public RegisterUserservice applicationUserService;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -55,6 +57,14 @@ public class BuchungController {
         Optional<ApplicationUser> sessionUser = getSessionUser(TokenValue);
         List<Buchung> buchungen = new ArrayList<>(sessionUser.get().getBuchungen());
         return buchungen;
+    }
+
+    @DELETE
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Buchungen stornieren", description = "Buchungen stornieren")
+    public Buchung delete(@PathParam("id") Long buchungId) {
+        return buchungService.deleteBuchung(buchungId);
     }
 
     public static String extractUpnFromJwtClaims(String jwtClaims) {

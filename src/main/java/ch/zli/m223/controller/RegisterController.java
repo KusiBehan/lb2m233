@@ -12,14 +12,14 @@ import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import ch.zli.m223.model.ApplicationUser;
-import ch.zli.m223.service.ApplicationUserService;
+import ch.zli.m223.service.RegisterUserservice;
 
 @Path("/register")
 @Tag(name = "Users", description = "register of users")
-public class UserController {
+public class RegisterController {
 
     @Inject
-    ApplicationUserService userService;
+    RegisterUserservice userService;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
