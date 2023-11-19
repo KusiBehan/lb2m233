@@ -1,6 +1,5 @@
 package ch.zli.m223.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import java.util.HashSet;
@@ -19,9 +18,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @NamedQueries({

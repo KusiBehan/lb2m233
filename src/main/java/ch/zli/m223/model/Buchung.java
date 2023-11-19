@@ -3,7 +3,7 @@ package ch.zli.m223.model;
 import javax.persistence.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
 
@@ -59,6 +59,7 @@ public class Buchung {
         this.id = id;
     }
 
+    @JsonIgnore
     public ApplicationUser getUser() {
         return applicationUser;
     }

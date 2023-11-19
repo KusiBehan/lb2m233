@@ -17,6 +17,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -35,49 +36,45 @@ public class BuchungController {
     BuchungService buchungService;
 
     @Inject
-    ApplicationUserService applicationUserService;
+    public ApplicationUserService applicationUserService;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Creates a new buchung.", description = "Creates a new buchung and returns thenewly added buchung.")
     public Buchung create(Buchung buchung, @HeaderParam("Authorization") String TokenValue) {
-        String JwtToken = TokenValue.replace("Bearer ", "");
-        String[] chunks = JwtToken.split("\\.");
-
-        Base64.Decoder decoder = Base64.getUrlDecoder();
-
-        String payload = new String(decoder.decode(chunks[1]));
-
-        String email = extractUpnFromJwtClaims(payload);
-        Optional<ApplicationUser> sessionUser = applicationUserService.findByEmail(email);
-
+        Optional<ApplicationUser> sessionUser = getSessionUser(TokenValue);
         buchung.setUser(sessionUser.get());
-
         return buchungService.createBuchung(buchung);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Get all your Booking", description = "Get a list of your bookings")
-    public List<Buchung> getBookings() {
-        return buchungService.getall();
+    @Operation(summary = "Get all your Booking", description = "Get a list of your bookings to check the status")
+    public List<Buchung> getBookings(@HeaderParam("Authorization") String TokenValue) {
+        Optional<ApplicationUser> sessionUser = getSessionUser(TokenValue);
+        List<Buchung> buchungen = new ArrayList<>(sessionUser.get().getBuchungen());
+        return buchungen;
     }
 
     public static String extractUpnFromJwtClaims(String jwtClaims) {
         try {
-            // Parse the JSON string into a JsonNode using Jackson ObjectMapper
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode claimsNode = objectMapper.readTree(jwtClaims);
-
-            // Extract the "upn" claim as a String
             return claimsNode.get("upn").asText();
         } catch (Exception e) {
-            // Handle JSON parsing or other errors
             e.printStackTrace();
         }
-
         return null;
+    }
+
+    public Optional<ApplicationUser> getSessionUser(String BearerValue) {
+        String JwtToken = BearerValue.replace("Bearer ", "");
+        String[] chunks = JwtToken.split("\\.");
+        Base64.Decoder decoder = Base64.getUrlDecoder();
+        String payload = new String(decoder.decode(chunks[1]));
+        String email = extractUpnFromJwtClaims(payload);
+        return applicationUserService.findByEmail(email);
     }
 
 }
