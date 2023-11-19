@@ -21,12 +21,12 @@ import ch.zli.m223.service.LoginService;
 public class LoginController {
 
   @Inject
-  LoginService sessionService;
+  LoginService loginService;
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Authenticate a user.", description = "Returns a token upon successful authentication.")
   public Response create(@Valid Credential credential) {
-    return this.sessionService.authenticate(credential);
+    return this.loginService.authenticate(credential);
   }
 }
