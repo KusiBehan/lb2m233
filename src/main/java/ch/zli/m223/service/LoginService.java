@@ -22,6 +22,63 @@ public class LoginService {
   @Inject
   RegisterUserservice applicationUserService;
 
+  // public Response authenticate(Credential credential) {
+  // Optional<ApplicationUser> principal =
+  // applicationUserService.findByEmail(credential.getEmail());
+  // try {
+  // if (principal.isPresent() &&
+  // principal.get().getPassword().equals(credential.getPassword())) {
+  // if (principal.get().getRole().equals("Mitglied")) {
+  // String token = Jwt
+  // .issuer("https://zli.example.com/")
+  // .upn(credential.getEmail())
+  // .groups(new HashSet<>(Arrays.asList("Mitglied")))
+  // .expiresIn(Duration.ofHours(24))
+  // .sign();
+  // if (principal.get().getSessionToken().equals(token) ||
+  // principal.get().getSessionToken().isEmpty()) {
+  // return Response
+  // .ok(principal.get())
+  // .header("Authorization", "Bearer " + token)
+  // .entity(token)
+  // .build();
+  // } else {
+  // return Response
+  // .status(Response.Status.FORBIDDEN)
+  // .entity("Session is still running")
+  // .build();
+  // }
+  // }
+  // if (principal.get().getRole().equals("Admin")) {
+  // String token = Jwt
+  // .issuer("https://zli.example.com/")
+  // .upn(credential.getEmail())
+  // .groups(new HashSet<>(Arrays.asList("Admin")))
+  // .expiresIn(Duration.ofHours(24))
+  // .sign();
+  // if (principal.get().getSessionToken().equals(token) ||
+  // principal.get().getSessionToken().isEmpty()) {
+  // return Response
+  // .ok(principal.get())
+  // .header("Authorization", "Bearer " + token)
+  // .entity(token)
+  // .build();
+  // }
+  // else {
+  // return Response
+  // .status(Response.Status.FORBIDDEN)
+  // .entity("Session is still running")
+  // .build();
+  // }
+  // }
+  // }
+  // } catch (Exception e) {
+  // System.err.println("Couldn't validate password.");
+  // }
+  // return Response.status(Response.Status.FORBIDDEN).build();
+  // }
+  // }
+
   public Response authenticate(Credential credential) {
     Optional<ApplicationUser> principal = applicationUserService.findByEmail(credential.getEmail());
     try {
@@ -39,24 +96,26 @@ public class LoginService {
               .entity(token)
               .build();
         }
-        if (principal.get().getRole().equals("Admin")) {
-          String token = Jwt
-              .issuer("https://zli.example.com/")
-              .upn(credential.getEmail())
-              .groups(new HashSet<>(Arrays.asList("Admin")))
-              .expiresIn(Duration.ofHours(24))
-              .sign();
-          return Response
-              .ok(principal.get())
-              .header("Authorization", "Bearer " + token)
-              .entity(token)
-              .build();
-        }
       }
-    } catch (Exception e) {
+      if (principal.get().getRole().equals("Admin")) {
+        String token = Jwt
+            .issuer("https://zli.example.com/")
+            .upn(credential.getEmail())
+            .groups(new HashSet<>(Arrays.asList("Admin")))
+            .expiresIn(Duration.ofHours(24))
+            .sign();
+        return Response
+            .ok(principal.get())
+            .header("Authorization", "Bearer " + token)
+            .entity(token)
+            .build();
+
+      }
+    } catch (
+
+    Exception e) {
       System.err.println("Couldn't validate password.");
     }
-
     return Response.status(Response.Status.FORBIDDEN).build();
   }
 }

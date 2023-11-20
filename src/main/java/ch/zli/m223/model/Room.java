@@ -29,9 +29,23 @@ public class Room {
     @Fetch(FetchMode.JOIN)
     private Set<Buchung> buchungen;
 
+    @ManyToMany
+    @JoinTable(name = "room_equipment", joinColumns = @JoinColumn(name = "room_id"), inverseJoinColumns = @JoinColumn(name = "equipment_id"))
+    @JsonIgnoreProperties("rooms")
+    @Fetch(FetchMode.JOIN)
+    private Set<Equipment> equipments;
+
     @JsonIgnore
     public Set<Buchung> getBuchungen() {
         return buchungen;
+    }
+
+    public Set<Equipment> getEquipments() {
+        return equipments;
+    }
+
+    public void setEquipments(Set<Equipment> equipments) {
+        this.equipments = equipments;
     }
 
     public void setBuchungen(Set<Buchung> buchungen) {

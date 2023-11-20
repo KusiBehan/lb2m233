@@ -26,6 +26,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 })
 public class ApplicationUser {
 
+  private String SessionToken;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Schema(readOnly = true)
@@ -115,5 +117,13 @@ public class ApplicationUser {
   public void removeBuchung(Buchung buchung) {
     buchungen.remove(buchung);
     buchung.setUser(null);
+  }
+
+  public String getSessionToken() {
+    return SessionToken;
+  }
+
+  public void setSessionToken(String sessionToken) {
+    SessionToken = sessionToken;
   }
 }
