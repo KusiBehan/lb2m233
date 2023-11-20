@@ -27,6 +27,18 @@ public class Buchung {
     @JoinColumn(name = "user_id")
     private ApplicationUser applicationUser;
 
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room bookedRoom;
+
+    public Room getBookedRoom() {
+        return bookedRoom;
+    }
+
+    public void setBookedRoom(Room bookedRoom) {
+        this.bookedRoom = bookedRoom;
+    }
+
     public LocalDateTime getDatum() {
         return datum;
     }

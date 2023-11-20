@@ -4,10 +4,10 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-// import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 
 import ch.zli.m223.model.ApplicationUser;
@@ -16,6 +16,8 @@ import io.smallrye.jwt.build.Jwt;
 
 @ApplicationScoped
 public class LoginService {
+
+  // private Set<String> validTokens;
 
   @Inject
   RegisterUserservice applicationUserService;
