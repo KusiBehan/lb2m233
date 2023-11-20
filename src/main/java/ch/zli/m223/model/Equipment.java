@@ -24,9 +24,8 @@ public class Equipment {
     private String beschreibung;
 
     @Column(nullable = false)
-    private Float preis;
+    private Double preis;
 
-    // @ManyToMany(mappedBy = "equipments")
     @ManyToMany
     @JoinTable(name = "room_equipment", joinColumns = @JoinColumn(name = "equipment_id"), inverseJoinColumns = @JoinColumn(name = "room_id"))
     @JsonIgnoreProperties("equipments")
@@ -57,11 +56,11 @@ public class Equipment {
         this.beschreibung = beschreibung;
     }
 
-    public Float getPreis() {
+    public Double getPreis() {
         return preis;
     }
 
-    public void setPreis(Float preis) {
+    public void setPreis(Double preis) {
         this.preis = preis;
     }
 

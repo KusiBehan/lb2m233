@@ -21,7 +21,7 @@ import ch.zli.m223.model.Buchung;
 import ch.zli.m223.service.BuchungService;
 
 @Path("/booking/admin")
-@Tag(name = "user", description = "Handling of user")
+@Tag(name = "Admin Buchungen", description = "Handling of Admin Buchungen")
 @RolesAllowed({ "Admin" })
 public class AdminBuchungController {
 
@@ -30,14 +30,14 @@ public class AdminBuchungController {
 
     @Path("/{id}/accept")
     @PUT
-    @Operation(summary = "summary", description = "description")
+    @Operation(summary = "accept booking", description = "Accept the pending bookings")
     public Buchung accept(@PathParam("id") Long id) {
         return buchungService.acceptBuchung(id);
     }
 
     @Path("/{id}/decline")
     @PUT
-    @Operation(summary = "summary", description = "description")
+    @Operation(summary = "decline booking", description = "decline the pending bookings")
     public Buchung decline(@PathParam("id") Long id) {
         return buchungService.declineBuchung(id);
     }
@@ -52,7 +52,7 @@ public class AdminBuchungController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Creates a new buchung.", description = "Creates a new buchung and returns thenewly added buchung.")
+    @Operation(summary = "Creates a new buchung.", description = "Creates a new buchung and returns the newly added buchung.")
     public Buchung create(Buchung buchung) {
         return buchungService.createBuchung(buchung);
     }
@@ -60,7 +60,7 @@ public class AdminBuchungController {
     @DELETE
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Buchungen Löschen", description = "Buchungen stornieren")
+    @Operation(summary = "Buchungen Löschen", description = "ausgewähle Buchung löschen")
     public Buchung delete(@PathParam("id") Long buchungId) {
         return buchungService.deleteBuchung(buchungId);
     }

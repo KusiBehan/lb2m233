@@ -23,7 +23,7 @@ public class RegisterController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(summary = "summary", description = "description")
+    @Operation(summary = "sign in", description = "to registrate a user")
     public ApplicationUser registerUser(@Valid @RequestBody ApplicationUser user) {
         return userService.createUser(user);
     }

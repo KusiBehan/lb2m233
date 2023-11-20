@@ -24,11 +24,4 @@ public class EquipmentService {
         var query = entityManager.createQuery("FROM Equipment", Equipment.class);
         return query.getResultList();
     }
-
-    // @Transactional
-    // public Buchung deleteBuchung(Long buchungId) {
-    // Buchung stornierteBuchung = entityManager.find(Buchung.class, buchungId);
-    // entityManager.remove(stornierteBuchung);
-    // return stornierteBuchung;
-    // }
 }

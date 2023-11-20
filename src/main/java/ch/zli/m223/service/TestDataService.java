@@ -1,77 +1,66 @@
-// package ch.zli.m223.service;
+package ch.zli.m223.service;
 
-// import java.time.LocalDateTime;
-// import java.util.Arrays;
-// import java.util.HashSet;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashSet;
 
-// import javax.enterprise.context.ApplicationScoped;
-// import javax.enterprise.event.Observes;
-// import javax.inject.Inject;
-// import javax.persistence.EntityManager;
-// import javax.transaction.Transactional;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
-// import ch.zli.m223.model.Category;
-// import ch.zli.m223.model.Entry;
-// import ch.zli.m223.model.Tag;
-// import io.quarkus.arc.profile.IfBuildProfile;
-// import io.quarkus.runtime.StartupEvent;
+import ch.zli.m223.model.ApplicationUser;
+import ch.zli.m223.model.Buchung;
+import ch.zli.m223.model.Equipment;
+import ch.zli.m223.model.Room;
+import io.quarkus.arc.profile.IfBuildProfile;
+import io.quarkus.runtime.StartupEvent;
 
-// @IfBuildProfile("dev")
-// @ApplicationScoped
-// public class TestDataService {
+@IfBuildProfile("dev")
+@ApplicationScoped
+public class TestDataService {
 
-// @Inject
-// EntityManager entityManager;
+    @Inject
+    EntityManager entityManager;
 
-// @Transactional
-// void generateTestData(@Observes StartupEvent event) {
-// // Categories
-// var projectACategory = new Category();
-// projectACategory.setTitle("Project A");
-// entityManager.persist(projectACategory);
+    @Transactional
+    void generateTestData(@Observes StartupEvent event) {
+        // Equipments
+        var projectAEquipment = new Equipment();
+        projectAEquipment.setName("Kaffemaschine");
+        projectAEquipment.setBeschreibung("Eine Kaffemaschine um Kaffe zu trinken");
+        projectAEquipment.setPreis(22.05);
+        entityManager.persist(projectAEquipment);
 
-// var projectBCategory = new Category();
-// projectBCategory.setTitle("Project B");
-// entityManager.persist(projectBCategory);
+        var projectBEquipment = new Equipment();
+        projectBEquipment.setName("Schreibtisch");
+        projectBEquipment.setBeschreibung("Einen Schreibtisch um zu schreiben");
+        projectBEquipment.setPreis(400.00);
+        entityManager.persist(projectBEquipment);
 
-// var projectCCategory = new Category();
-// projectCCategory.setTitle("Project C");
-// entityManager.persist(projectCCategory);
+        // Rooms
+        var newRoom1 = new Room();
+        newRoom1.setPlace("newPlace1");
+        newRoom1.setEquipments(new HashSet<>(Arrays.asList(projectAEquipment, projectBEquipment)));
+        newRoom1.setgroesse("32cm2");
+        entityManager.persist(newRoom1);
 
-// // Tags
-// var programmingTag = new Tag();
-// programmingTag.setTitle("Programming");
-// entityManager.persist(programmingTag);
+        // Users
+        var user1 = new ApplicationUser();
+        user1.setEmail("Nasko@icloud.com");
+        user1.setFirstName("Nasko");
+        user1.setLastName("Feratovic");
+        user1.setPassword("12345");
+        entityManager.persist(user1);
 
-// var debuggingTag = new Tag();
-// debuggingTag.setTitle("Debugging");
-// entityManager.persist(debuggingTag);
-
-// var meetingTag = new Tag();
-// meetingTag.setTitle("Meeting");
-// entityManager.persist(meetingTag);
-
-// // Entries
-// var firstEntry = new Entry();
-// firstEntry.setCategory(projectACategory);
-// firstEntry.setTags(new HashSet<>(Arrays.asList(programmingTag,
-// debuggingTag)));
-// firstEntry.setCheckIn(LocalDateTime.now().minusHours(3));
-// firstEntry.setCheckOut(LocalDateTime.now().minusHours(2));
-// entityManager.persist(firstEntry);
-
-// var secondEntry = new Entry();
-// secondEntry.setCategory(projectACategory);
-// secondEntry.setTags(new HashSet<>(Arrays.asList(meetingTag)));
-// secondEntry.setCheckIn(LocalDateTime.now().minusHours(2));
-// secondEntry.setCheckOut(LocalDateTime.now().minusHours(1));
-// entityManager.persist(secondEntry);
-
-// var thirdEntry = new Entry();
-// thirdEntry.setCategory(projectBCategory);
-// thirdEntry.setTags(new HashSet<>(Arrays.asList(programmingTag)));
-// thirdEntry.setCheckIn(LocalDateTime.now().minusHours(1));
-// thirdEntry.setCheckOut(LocalDateTime.now());
-// entityManager.persist(thirdEntry);
-// }
-// }
+        // Buchungen
+        var firstEntry = new Buchung();
+        firstEntry.setBookedRoom(newRoom1);
+        firstEntry.setStatus("Pending");
+        firstEntry.setDatum(LocalDateTime.parse("2023-11-15T08:00:12"));
+        firstEntry.setDauer("Halber Tag");
+        firstEntry.setUser(user1);
+        entityManager.persist(firstEntry);
+    }
+}

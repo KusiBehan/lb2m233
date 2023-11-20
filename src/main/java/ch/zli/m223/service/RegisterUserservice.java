@@ -41,19 +41,22 @@ public class RegisterUserservice {
 
     @Transactional
     public ApplicationUser createUser(ApplicationUser user, String... Bearervalue) {
-        if (Bearervalue.length > 0) {
-            Optional<ApplicationUser> sessionUser = getSessionUser(Bearervalue[0]);
-            if (sessionUser.get().getRole().equals("Admin")) {
-                return entityManager.merge(user);
+        try {
+            if (Bearervalue.length > 0) {
+                Optional<ApplicationUser> sessionUser = getSessionUser(Bearervalue[0]);
+                if (sessionUser.isPresent() && sessionUser.get().getRole().equals("Admin")) {
+                    return entityManager.merge(user);
+                }
             }
+            if (findAll().isEmpty()) {
+                user.setRole("Admin");
+            } else {
+                user.setRole("Mitglied");
+            }
+            return entityManager.merge(user);
+        } catch (Exception e) {
+            throw new RuntimeException("User already created", e);
         }
-
-        if (findAll().isEmpty()) {
-            user.setRole("Admin");
-        } else {
-            user.setRole("Mitglied");
-        }
-        return entityManager.merge(user);
     }
 
     @Transactional

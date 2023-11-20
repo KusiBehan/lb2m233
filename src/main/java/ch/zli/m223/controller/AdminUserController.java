@@ -25,7 +25,7 @@ import ch.zli.m223.service.RegisterUserservice;
 import ch.zli.m223.service.BuchungService;
 
 @Path("/user")
-@Tag(name = "user", description = "Handling of user")
+@Tag(name = "user", description = "Handling of users as Admin")
 @RolesAllowed({ "Admin" })
 public class AdminUserController {
 

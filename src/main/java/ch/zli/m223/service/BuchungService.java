@@ -6,58 +6,93 @@ import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import ch.zli.m223.model.Buchung;
 
 @ApplicationScoped
 public class BuchungService {
+
     @Inject
     EntityManager entityManager;
 
     @Transactional
     public Buchung createBuchung(Buchung buchung) {
-        return entityManager.merge(buchung);
+        try {
+            return entityManager.merge(buchung);
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating Buchung", e);
+        }
     }
 
     @Transactional
     public List<Buchung> getall() {
-        var query = entityManager.createQuery("FROM Buchung", Buchung.class);
-        return query.getResultList();
+        try {
+            var query = entityManager.createQuery("FROM Buchung", Buchung.class);
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Error getting all Buchungen", e);
+        }
     }
 
     @Transactional
     public Buchung updateBuchung(Long id, Buchung buchung) {
-        buchung.setId(id);
-        return entityManager.merge(buchung);
+        try {
+            buchung.setId(id);
+            return entityManager.merge(buchung);
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating Buchung", e);
+        }
     }
 
     @Transactional
     public Buchung acceptBuchung(Long id) {
-        Optional<Buchung> buchung = findbyId(id);
-        buchung.get().setStatus("accepted");
-        return entityManager.merge(buchung.get());
+        try {
+            Optional<Buchung> buchung = findbyId(id);
+            buchung.orElseThrow(() -> new EntityNotFoundException("Buchung not found"));
+            buchung.get().setStatus("accepted");
+            return entityManager.merge(buchung.get());
+        } catch (Exception e) {
+            throw new RuntimeException("Error accepting Buchung", e);
+        }
     }
 
     @Transactional
     public Buchung declineBuchung(Long id) {
-        Optional<Buchung> buchung = findbyId(id);
-        buchung.get().setStatus("declined");
-        return entityManager.merge(buchung.get());
+        try {
+            Optional<Buchung> buchung = findbyId(id);
+            buchung.orElseThrow(() -> new EntityNotFoundException("Buchung not found"));
+            buchung.get().setStatus("declined");
+            return entityManager.merge(buchung.get());
+        } catch (Exception e) {
+            throw new RuntimeException("Error declining Buchung", e);
+        }
     }
 
     @Transactional
     public Buchung deleteBuchung(Long buchungId) {
-        Buchung stornierteBuchung = entityManager.find(Buchung.class, buchungId);
-        entityManager.remove(stornierteBuchung);
-        return stornierteBuchung;
+        try {
+            Buchung stornierteBuchung = entityManager.find(Buchung.class, buchungId);
+            if (stornierteBuchung == null) {
+                throw new EntityNotFoundException("Buchung not found");
+            }
+            entityManager.remove(stornierteBuchung);
+            return stornierteBuchung;
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting Buchung", e);
+        }
     }
 
     public Optional<Buchung> findbyId(Long id) {
-        return entityManager
-                .createNamedQuery("Buchung.findById", Buchung.class)
-                .setParameter("id", id)
-                .getResultStream()
-                .findFirst();
+        try {
+            return entityManager
+                    .createNamedQuery("Buchung.findById", Buchung.class)
+                    .setParameter("id", id)
+                    .getResultStream()
+                    .findFirst();
+        } catch (Exception e) {
+            throw new RuntimeException("Error finding Buchung by ID", e);
+        }
     }
 }

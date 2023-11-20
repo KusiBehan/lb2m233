@@ -16,7 +16,7 @@ import ch.zli.m223.model.Credential;
 import ch.zli.m223.service.LoginService;
 
 @Path("/login")
-@Tag(name = "Session", description = "Handling of sessions")
+@Tag(name = "Login", description = "login Endpoint")
 @PermitAll
 public class LoginController {
 

@@ -11,7 +11,6 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-// import org.hibernate.mapping.List;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class EquipmentController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Creates a new room.", description = "Creates a new buchung and returns thenewly added buchung.")
+    @Operation(summary = "Creates a new equipment.", description = "Creates a new equipment")
     public Equipment create(Equipment equipment) {
         return equipmentService.createEquipment(equipment);
     }
