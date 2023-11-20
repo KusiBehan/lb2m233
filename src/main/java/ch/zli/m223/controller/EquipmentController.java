@@ -35,8 +35,8 @@ public class EquipmentController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Get all your Booking", description = "Get a list of your bookings to check the status")
-    public List<Equipment> getBookings() {
+    @Operation(summary = "Get all equipments", description = "Get a list of equipments")
+    public List<Equipment> getEquipments() {
         return equipmentService.getall();
     }
 
