@@ -8,6 +8,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -24,7 +25,7 @@ import ch.zli.m223.service.RegisterUserservice;
 import ch.zli.m223.service.BuchungService;
 
 @Path("/user")
-@Tag(name = "buchung", description = "Handling of buchungen")
+@Tag(name = "user", description = "Handling of user")
 @RolesAllowed({ "Admin" })
 public class AdminUserController {
 
@@ -34,17 +35,12 @@ public class AdminUserController {
     @Inject
     public RegisterUserservice applicationUserService;
 
-    // @POST
-    // @Produces(MediaType.APPLICATION_JSON)
-    // @Consumes(MediaType.APPLICATION_JSON)
-    // @Operation(summary = "Creates a new buchung.", description = "Creates a new
-    // buchung and returns thenewly added buchung.")
-    // public Buchung create(Buchung buchung, @HeaderParam("Authorization") String
-    // TokenValue) {
-    // Optional<ApplicationUser> sessionUser = getSessionUser(TokenValue);
-    // buchung.setUser(sessionUser.get());
-    // return buchungService.createBuchung(buchung);
-    // }
+    @Path("/{id}")
+    @PUT
+    @Operation(summary = "Updates an user.", description = "Updates an user by its id.")
+    public ApplicationUser update(@PathParam("id") Long id, ApplicationUser user) {
+        return applicationUserService.updateUser(id, user);
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

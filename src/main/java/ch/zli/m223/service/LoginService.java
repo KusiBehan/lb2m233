@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -17,104 +16,63 @@ import io.smallrye.jwt.build.Jwt;
 @ApplicationScoped
 public class LoginService {
 
-  // private Set<String> validTokens;
-
   @Inject
   RegisterUserservice applicationUserService;
 
   public Response authenticate(Credential credential) {
     Optional<ApplicationUser> principal = applicationUserService.findByEmail(credential.getEmail());
+
     try {
-      if (principal.isPresent() &&
-          principal.get().getPassword().equals(credential.getPassword())) {
-        if (principal.get().getRole().equals("Mitglied")) {
-          String token = Jwt
-              .issuer("https://zli.example.com/")
-              .upn(credential.getEmail())
-              .groups(new HashSet<>(Arrays.asList("Mitglied")))
-              .expiresIn(Duration.ofHours(24))
-              .sign();
-          if (applicationUserService.getSessionToken().equals(token) ||
-              applicationUserService.getSessionToken().isEmpty()) {
-            applicationUserService.setSessionToken(token);
-            return Response
-                .ok(principal.get())
-                .header("Authorization", "Bearer " + token)
-                .entity(token)
-                .build();
-          } else {
-            return Response
-                .status(Response.Status.FORBIDDEN)
-                .entity("Session is still running")
-                .build();
-          }
-        }
-        if (principal.get().getRole().equals("Admin")) {
-          String token = Jwt
-              .issuer("https://zli.example.com/")
-              .upn(credential.getEmail())
-              .groups(new HashSet<>(Arrays.asList("Admin")))
-              .expiresIn(Duration.ofHours(24))
-              .sign();
-          if (applicationUserService.getSessionToken().equals(token) ||
-              applicationUserService.getSessionToken().isEmpty()) {
-            applicationUserService.setSessionToken(token);
-            return Response
-                .ok(principal.get())
-                .header("Authorization", "Bearer " + token)
-                .entity(token)
-                .build();
-          } else {
-            return Response
-                .status(Response.Status.FORBIDDEN)
-                .entity("Session is still running")
-                .build();
-          }
+      if (principal.isPresent() && principal.get().getPassword().equals(credential.getPassword())) {
+        String role = principal.get().getRole();
+        String token = generateToken(credential.getEmail(), role);
+
+        if (isSessionValid(principal.get().getEmail(), token)) {
+          updateSession(principal.get().getEmail(), token);
+          return buildResponse(principal.get(), token);
+        } else {
+          return Response.status(Response.Status.FORBIDDEN)
+              .entity("Session is still running")
+              .build();
         }
       }
     } catch (Exception e) {
       System.err.println("Couldn't validate password.");
     }
+
     return Response.status(Response.Status.FORBIDDEN).build();
   }
+
+  private String generateToken(String email, String role) {
+    return Jwt.issuer("https://zli.example.com/")
+        .upn(email)
+        .groups(new HashSet<>(Arrays.asList(role)))
+        .expiresIn(Duration.ofHours(24))
+        .sign();
+  }
+
+  private boolean isSessionValid(String userEmail, String token) {
+    if (applicationUserService.getSessionUser().equals(userEmail)) {
+      if (applicationUserService.getSessionToken().equals(token) ||
+          applicationUserService.getSessionToken().isEmpty()) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+  private void updateSession(String userEmail, String token) {
+    applicationUserService.setSessionUser(userEmail);
+    applicationUserService.setSessionToken(token);
+  }
+
+  private Response buildResponse(ApplicationUser principal, String token) {
+    return Response.ok(principal)
+        .header("Authorization", "Bearer " + token)
+        .entity(token)
+        .build();
+  }
 }
-
-// public Response authenticate(Credential credential) {
-// Optional<ApplicationUser> principal =
-// applicationUserService.findByEmail(credential.getEmail());
-// try {
-// if (principal.isPresent() &&
-// principal.get().getPassword().equals(credential.getPassword())) {
-// if (principal.get().getRole().equals("Mitglied")) {
-// String token = Jwt
-// .issuer("https://zli.example.com/")
-// .upn(credential.getEmail())
-// .groups(new HashSet<>(Arrays.asList("Mitglied")))
-// .expiresIn(Duration.ofHours(24))
-// .sign();
-// return Response
-// .ok(principal.get())
-// .header("Authorization", "Bearer " + token)
-// .entity(token)
-// .build();
-// }
-// }
-// if (principal.get().getRole().equals("Admin")) {
-// String token = Jwt
-// .issuer("https://zli.example.com/")
-// .upn(credential.getEmail())
-// .groups(new HashSet<>(Arrays.asList("Admin")))
-// .expiresIn(Duration.ofHours(24))
-// .sign();
-// return Response
-// .ok(principal.get())
-// .header("Authorization", "Bearer " + token)
-// .entity(token)
-// .build();
-
-// }
-// } catch (Exception e) {
-// System.err.println("Couldn't validate password.");
-// }
-// return Response.status(Response.Status.FORBIDDEN).build();
-// }

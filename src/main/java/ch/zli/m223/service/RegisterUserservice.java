@@ -21,6 +21,16 @@ public class RegisterUserservice {
 
     private String sessionToken = "";
 
+    private String sessionUser = "";
+
+    public String getSessionUser() {
+        return sessionUser;
+    }
+
+    public void setSessionUser(String sessionUser) {
+        this.sessionUser = sessionUser;
+    }
+
     public String getSessionToken() {
         return sessionToken;
     }

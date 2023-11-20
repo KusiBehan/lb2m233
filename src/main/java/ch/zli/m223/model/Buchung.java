@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Buchung.findById", query = "SELECT u FROM Buchung u WHERE u.id = :id")
+})
 public class Buchung {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
