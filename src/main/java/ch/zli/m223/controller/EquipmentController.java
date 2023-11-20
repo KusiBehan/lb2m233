@@ -20,7 +20,7 @@ import ch.zli.m223.service.EquipmentService;
 
 @Path("/equipment")
 @Tag(name = "equipment", description = "Handling of equipment")
-@RolesAllowed({ "Mitglied", "Admin" })
+@RolesAllowed({ "Admin" })
 public class EquipmentController {
 
     @Inject

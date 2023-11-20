@@ -19,6 +19,16 @@ public class RegisterUserservice {
     @Inject
     EntityManager entityManager;
 
+    private String sessionToken = "";
+
+    public String getSessionToken() {
+        return sessionToken;
+    }
+
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
+    }
+
     @Transactional
     public ApplicationUser createUser(ApplicationUser user, String... Bearervalue) {
         if (Bearervalue.length > 0) {
@@ -37,9 +47,10 @@ public class RegisterUserservice {
     }
 
     @Transactional
-    public void deleteUser(Long id) {
+    public ApplicationUser deleteUser(Long id) {
         var entity = entityManager.find(ApplicationUser.class, id);
         entityManager.remove(entity);
+        return entity;
     }
 
     @Transactional

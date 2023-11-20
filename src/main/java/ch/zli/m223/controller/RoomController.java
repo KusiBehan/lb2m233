@@ -20,7 +20,7 @@ import ch.zli.m223.service.RoomService;
 
 @Path("/room")
 @Tag(name = "buchung", description = "Handling of buchungen")
-@RolesAllowed({ "Mitglied", "Admin" })
+@RolesAllowed({ "Admin" })
 public class RoomController {
 
     @Inject

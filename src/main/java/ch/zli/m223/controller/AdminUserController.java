@@ -4,10 +4,12 @@ import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -60,13 +62,11 @@ public class AdminUserController {
         return applicationUserService.createUser(applicationUser, TokenValue);
     }
 
-    // @DELETE
-    // @Path("{id}")>
-    // @Produces(MediaType.APPLICATION_JSON)
-    // @Operation(summary = "Buchungen stornieren", description = "Buchungen
-    // stornieren")
-    // public Buchung delete(@PathParam("id") Long buchungId) {
-    // return buchungService.deleteBuchung(buchungId);
-    // }
-
+    @DELETE
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "User löschen", description = "User löschen")
+    public ApplicationUser delete(@PathParam("id") Long buchungId) {
+        return applicationUserService.deleteUser(buchungId);
+    }
 }
