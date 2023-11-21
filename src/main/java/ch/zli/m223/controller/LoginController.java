@@ -2,7 +2,6 @@ package ch.zli.m223.controller;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
-import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -26,7 +25,7 @@ public class LoginController {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Authenticate a user.", description = "Returns a token upon successful authentication.")
-  public Response create(@Valid Credential credential) {
+  public Response create(Credential credential) {
     return this.loginService.authenticate(credential);
   }
 }

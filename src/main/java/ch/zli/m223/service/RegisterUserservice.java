@@ -58,7 +58,7 @@ public class RegisterUserservice {
             }
             return entityManager.merge(user);
         } catch (Exception e) {
-            throw new RuntimeException("User already created", e);
+            throw new RuntimeException("User already created Or Empty", e);
         }
     }
 

@@ -52,7 +52,7 @@ public class TestDataService {
         user1.setFirstName("Nasko");
         user1.setLastName("Feratovic");
         user1.setRole("Admin");
-        user1.setPassword("12345");
+        user1.setPassword("$2a$10$n6bthMCFpeKU7Le8F5ppCejvWqQ91zllQ3938utbK7ScYQAt6yL0u");
         entityManager.persist(user1);
 
         // Buchungen
