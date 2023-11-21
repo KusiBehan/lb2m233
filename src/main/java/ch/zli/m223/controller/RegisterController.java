@@ -25,6 +25,8 @@ public class RegisterController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "sign in", description = "to registrate a user")
     public ApplicationUser registerUser(@Valid @RequestBody ApplicationUser user) {
-        return userService.createUser(user);
+        ApplicationUser userWithoutPwd = userService.createUser(user);
+        userWithoutPwd.setPassword("-");
+        return userWithoutPwd;
     }
 }

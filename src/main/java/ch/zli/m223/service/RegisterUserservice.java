@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -42,6 +44,7 @@ public class RegisterUserservice {
     @Transactional
     public ApplicationUser createUser(ApplicationUser user, String... Bearervalue) {
         try {
+            user.setPassword(hashPassword(user.getPassword()));
             if (Bearervalue.length > 0) {
                 Optional<ApplicationUser> sessionUser = getSessionUser(Bearervalue[0]);
                 if (sessionUser.isPresent() && sessionUser.get().getRole().equals("Admin")) {
@@ -70,6 +73,15 @@ public class RegisterUserservice {
     public ApplicationUser updateUser(Long id, ApplicationUser user) {
         user.setId(id);
         return entityManager.merge(user);
+    }
+
+    public String hashPassword(String password) {
+        int logRounds = 10;
+        return BCrypt.hashpw(password, BCrypt.gensalt(logRounds));
+    }
+
+    public boolean checkPassword(String enteredPassword, String hashedPassword) {
+        return BCrypt.checkpw(enteredPassword, hashedPassword);
     }
 
     public List<ApplicationUser> findAll() {

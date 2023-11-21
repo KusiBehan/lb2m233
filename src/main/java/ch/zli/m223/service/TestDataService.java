@@ -51,6 +51,7 @@ public class TestDataService {
         user1.setEmail("Nasko@icloud.com");
         user1.setFirstName("Nasko");
         user1.setLastName("Feratovic");
+        user1.setRole("Admin");
         user1.setPassword("12345");
         entityManager.persist(user1);
 

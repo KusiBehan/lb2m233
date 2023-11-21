@@ -23,7 +23,8 @@ public class LoginService {
     Optional<ApplicationUser> principal = applicationUserService.findByEmail(credential.getEmail());
 
     try {
-      if (principal.isPresent() && principal.get().getPassword().equals(credential.getPassword())) {
+      if (principal.isPresent()
+          && applicationUserService.checkPassword(credential.getPassword(), principal.get().getPassword())) {
         String role = principal.get().getRole();
         String token = generateToken(credential.getEmail(), role);
 
