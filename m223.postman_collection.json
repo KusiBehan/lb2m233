@@ -1,0 +1,836 @@
+{
+	"info": {
+		"_postman_id": "2dbbd787-86e8-45c8-958e-9d6c2a0a31a0",
+		"name": "m223",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24940621"
+	},
+	"item": [
+		{
+			"name": "Mitglied Buchungen",
+			"item": [
+				{
+					"name": "Get Buchung",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJBZG1pbiJdLCJpYXQiOjE3MDA0ODc5MDEsImV4cCI6MTcwMDU3NDMwMSwianRpIjoiNzQzMDllOGEtZDU5OC00MzYyLWE2Y2MtOGYxNDU4N2I0ZTM1In0.Biygq5IqeUNL3YmcNF49EUElM1oada1xRki-YLpNsathtgvrwKXpi4bQlXa6E3zw_y6_wt4XFj0JqeB5c0HJX3NNzp_x-W7F15u49ozxOlfgXWNXr3q1eYWJgc74NJ-wQ8PbQNCLLTPpwHtTUTJy5-gi3nH0puqnA9gG1C5eyFfnEMy6WYkR_QY2Hrqv4CaDoWUnUruf7-zsUB-uLoM0c1mWb9vpMHmakKS4KCgl9yooVpdjYEy4CPXHmBFgbPStkbfQIOz2KQ7PdzNIWcxVodcS8zdqNzn93mEeeG5cgp-3v7svMbZhi60gPENE98oF0BVCwuAZ3ovMMXMHyF_LoQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/buchung"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Buchung Ohne Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/buchung"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Buchung falscher Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "fjniewnfojewnfoe"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/buchung"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Buchung",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmVoYW5AaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJNaXRnbGllZCJdLCJpYXQiOjE3MDA0Mjk5MDcsImV4cCI6MTcwMDUxNjMwNywianRpIjoiZjBhODA3ZjMtY2MwMS00ZjdkLTlhZWMtN2I2ZTA1M2Y0YjJiIn0.SOoxxfrGwk4SRrd-Nxc0G_Wch94bDBx61plKuEepfO7sJiMTPt7hT20kmafRquF7cNlDClpi5MbtcN_lIk_hkfpgHUOb7SxxydqwkYw9XjJy8oBEvDtU4meb0ScfMbcaEvxmhI0vTRljRWsQXJUW8ezt5iyAPwfY4gqBKYSXrkwzC9F08FSzTFmPhegPib4UQq73sXOPcnxRJ5mNWH10vxEakLlxh_H-AyM-dNmHR070nFXgCCoF9M_1XlTtfD-dxXvPNoqWuTkxL9mXn9AP1Jh4FGpWPxsImvGMBtxjEoEM7UD-bV_vnaQVstHtxSiL-IAbOHp-yld6P7ULRSCmgg"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/buchung/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Buchung No id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmVoYW5AaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJNaXRnbGllZCJdLCJpYXQiOjE3MDA0Mjk5MDcsImV4cCI6MTcwMDUxNjMwNywianRpIjoiZjBhODA3ZjMtY2MwMS00ZjdkLTlhZWMtN2I2ZTA1M2Y0YjJiIn0.SOoxxfrGwk4SRrd-Nxc0G_Wch94bDBx61plKuEepfO7sJiMTPt7hT20kmafRquF7cNlDClpi5MbtcN_lIk_hkfpgHUOb7SxxydqwkYw9XjJy8oBEvDtU4meb0ScfMbcaEvxmhI0vTRljRWsQXJUW8ezt5iyAPwfY4gqBKYSXrkwzC9F08FSzTFmPhegPib4UQq73sXOPcnxRJ5mNWH10vxEakLlxh_H-AyM-dNmHR070nFXgCCoF9M_1XlTtfD-dxXvPNoqWuTkxL9mXn9AP1Jh4FGpWPxsImvGMBtxjEoEM7UD-bV_vnaQVstHtxSiL-IAbOHp-yld6P7ULRSCmgg"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/buchung/"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Buchung ohne Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/buchung/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Buchung falscher Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "fjniewnfojewnfoe"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/buchung/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Buchung Ungültige ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmVoYW5AaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJNaXRnbGllZCJdLCJpYXQiOjE3MDA0Mjk5MDcsImV4cCI6MTcwMDUxNjMwNywianRpIjoiZjBhODA3ZjMtY2MwMS00ZjdkLTlhZWMtN2I2ZTA1M2Y0YjJiIn0.SOoxxfrGwk4SRrd-Nxc0G_Wch94bDBx61plKuEepfO7sJiMTPt7hT20kmafRquF7cNlDClpi5MbtcN_lIk_hkfpgHUOb7SxxydqwkYw9XjJy8oBEvDtU4meb0ScfMbcaEvxmhI0vTRljRWsQXJUW8ezt5iyAPwfY4gqBKYSXrkwzC9F08FSzTFmPhegPib4UQq73sXOPcnxRJ5mNWH10vxEakLlxh_H-AyM-dNmHR070nFXgCCoF9M_1XlTtfD-dxXvPNoqWuTkxL9mXn9AP1Jh4FGpWPxsImvGMBtxjEoEM7UD-bV_vnaQVstHtxSiL-IAbOHp-yld6P7ULRSCmgg"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/buchung/234"
+					},
+					"response": []
+				},
+				{
+					"name": "Buchung erstellen",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiI0MzI0M0BpY2xvdWQuY29tIiwiZ3JvdXBzIjpbIkFkbWluIl0sImlhdCI6MTcwMDUxNDQ5OSwiZXhwIjoxNzAwNjAwODk5LCJqdGkiOiI5NmFmMjJiYi00YTQ0LTQ1MWYtODdlZS02NTUwMjA3ZDRlODEifQ.IUdVGHChV0bBOYsg0k6qnlPNRuxaOAgAvxB63jbCE9_7w5P7l8sxCGzIwSSW15lAHn4mdvTR2D8C5bMZ0c0fw9D_xd5r8ijBDP3D7bc27eRrzVZWrry3gn3Q-ok1C8QX9Rq3madWspcBQ9iGf5FNi6US2qk8IxtvBc51niU1ynbte7eKwxFRF4KmYZykoja-SqBtmG5opKruq0acx_T7B8eSu7oOIe0eucVQlK-jv2IANzysTB_9ZnMx97CoACc0vsAnXN2m8gjNTpFf_d3HdCft_IwvnPFHseVMzdkRCZfJd4ncjnHpRe3TebKQ_48cFNdrZCzBt8CwX1CZOeCh7Q"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"datum\": \"2023-11-15T08:00:12\",\r\n  \"dauer\": \"morgen\",\r\n  \"status\": \"Confirmed\",\r\n  \"bookedRoom\": {\r\n      \"id\": 2\r\n  }\r\n  } \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/buchung"
+					},
+					"response": []
+				},
+				{
+					"name": "Buchung erstellen ohne Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"datum\": \"2023-11-15T08:00:12\",\r\n  \"dauer\": \"morgen\",\r\n  \"status\": \"Confirmed\",\r\n  \"bookedRoom\": {\r\n      \"id\": 2\r\n  }\r\n  } \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/buchung"
+					},
+					"response": []
+				},
+				{
+					"name": "Buchung erstellen falscher Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "fjniewnfojewnfoe"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"datum\": \"2023-11-15T08:00:12\",\r\n  \"dauer\": \"morgen\",\r\n  \"status\": \"Confirmed\",\r\n  \"bookedRoom\": {\r\n      \"id\": 2\r\n  }\r\n  } \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/buchung"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Registrierung, Authentifizierung",
+			"item": [
+				{
+					"name": "Check Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n\"email\": \"kusi@icloud.com\",\r\n \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\": \"kusi@icloud.com\",\r\n \"password\": \"12345\",\r\n  \"firstName\": \"TestUser\",\r\n  \"lastName\": \"Kusi\",\r\n  \"role\": \"Adewetemin\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Register without Body",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8080/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Login without Body",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8080/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Room",
+					"item": [
+						{
+							"name": "Get Rooms",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJNaXRnbGllZCJdLCJpYXQiOjE3MDA0ODQ2MDQsImV4cCI6MTcwMDU3MTAwNCwianRpIjoiNWNkNTk5N2ItYThjMi00ZGI4LWEyMTgtOGMyNzY4NjgzMDdlIn0.W1-wS_Q3qNtlNb03lraNZyfAtV3wqMWElvoDYczDdB8fmXy0YKlilf8Fvo4yy3WZWRK72WcG1KeJ9ameHvvLIHfVnG1sd60QtcLSq9hOvyHWHuGXqUFL82Is4zJ2nWEAxFtg9xEIemlSaTQGhyAF_aMkMydxVD2FGnRIEGi9qooiVl3GVX7Ai4uA0G-vuBuF9VoTxP78MLiL01BHZ6EfsU4aTHwK1igSamO_PTYa3VIaAU3pfIpnMD_CB5x4yaqjCOFfnjDPtktNCQhT-VvVmT5BJ4eQQI7fvc7ujPeoiIc4NaASqZ4XWLjLizBESnR2ZLLrOmcyZXMbIdDryKRIVQ"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/room"
+							},
+							"response": []
+						},
+						{
+							"name": "Create new Room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiI0MzI0M0BpY2xvdWQuY29tIiwiZ3JvdXBzIjpbIkFkbWluIl0sImlhdCI6MTcwMDUxMzkxNiwiZXhwIjoxNzAwNjAwMzE2LCJqdGkiOiIzODVkOTBlZi0xMTg3LTQ1NGItYWFhMy0xMGE3Mzc4Y2VhMTMifQ.gdYpZsZ3ulIFr7m61_LeNA3vqdTE3D_j18QtI79oG-lQIiaAva_aP-dXjdcMuNCbn_4wMbzMX6BZY8K2Zb2e7XJmk2doMx2U43GwnSAgA4TfB-a9hkwlTZxBcIB2Yb0bvq19HaQWK1no5M6_o4ggH-E251ilHvVINK3XG4owcrF5hQCvHVg-aWs5N-UT1D29_LS3e5Wuv4pKsTbvfohmbQJhSSDRCmGzThBA_oXJqJYRJ5oIXCZ-I7mH_-JYLh8N6NKj0W99m2hDtpBR1KYywKu_Trc90rTJ_Y-ocRvdyEmeQ_jO2TfFQu55V-ZUFx0CMetrv3BaGLrpw1CRXOP1rA"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"place\": \"Room3\",\r\n  \"groesse\": \"Room3\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/room"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJBZG1pbiJdLCJpYXQiOjE3MDA0OTA2ODYsImV4cCI6MTcwMDU3NzA4NiwianRpIjoiYTQwNjljYjgtZjA3MC00NTNiLWEwMDMtMGVmNGZkODYyNDE4In0.BJcWYiKQGQ06FJ4Eb1Ami1Kf9tfVOWzLelHoRe_Gp5EswwKAvTOWepWKhZ_BhfFpbZW4w1mcpG8iNiu69larNoTmPF-pP9uEXmONTbsnsWDXr2A6QY4GEAGHlzszPq_Qy8Ce3SgyHDVD8r8CUYLIgJc2Rm3RUSo0WK9p2fTrDBErgxP8rxxLSjStfsbmt2FfC1njnMfhCUKU6ljup4wfTNUoQYLZOeBT5VA8uhk_iHlRevzbWwsAzOOLiQCpNzdWOtz_uJqpXuT-5_zBs0itKCHIvh5c2Uzkuvtlv9UkQ3ZyAc6t6WzFie26fUMz-bbBmaXLxtDHWQQ-CyZfFJ2D9A"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8080/room/4"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJob2lpQGljbG91ZC5jb20iLCJncm91cHMiOlsiQWRtaW4iXSwiaWF0IjoxNzAwNTEyNTAwLCJleHAiOjE3MDA1OTg5MDAsImp0aSI6ImI4NDU1Zjg3LTM2NDktNDlhZC1hMWJkLTVkYjRmYTVkNTMwYiJ9.ToM1uqXLiq9_a0a-dZGOFnUasoViqXgApQh6Uud5HwvMxOoNH-GaF1yZF_o9bPPvMXIgmoL3KnZOp8n4vfeBAME5mF4Sy7CWq6AwHieZtBEzc3iKL0aZzyZa614ztC7UUb5w-XL2Ly5pCaYQzqb30mRl4ZkfQGNZdVpAPnIy4lq-_8SlxXP3iOAE3vHYII93UoVEPhdjKYTCnJ02HnyCm22p-iYxazZ0L3PLvwPpCD4kcHohR1Hf9B94suLyRZ8Ns6Sg8qWiOJTnJ-w-rWkl295xuiWlj31ffNZWtftB_jaElB-1ujRIWU90UlyqsGOZ36qlZbRRorFB45Du6SDIaA"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"place\": \"Room3\",\r\n  \"groesse\": \"Room3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/room/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Equipment",
+					"item": [
+						{
+							"name": "get equipments",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJNaXRnbGllZCJdLCJpYXQiOjE3MDA0ODQ2MDQsImV4cCI6MTcwMDU3MTAwNCwianRpIjoiNWNkNTk5N2ItYThjMi00ZGI4LWEyMTgtOGMyNzY4NjgzMDdlIn0.W1-wS_Q3qNtlNb03lraNZyfAtV3wqMWElvoDYczDdB8fmXy0YKlilf8Fvo4yy3WZWRK72WcG1KeJ9ameHvvLIHfVnG1sd60QtcLSq9hOvyHWHuGXqUFL82Is4zJ2nWEAxFtg9xEIemlSaTQGhyAF_aMkMydxVD2FGnRIEGi9qooiVl3GVX7Ai4uA0G-vuBuF9VoTxP78MLiL01BHZ6EfsU4aTHwK1igSamO_PTYa3VIaAU3pfIpnMD_CB5x4yaqjCOFfnjDPtktNCQhT-VvVmT5BJ4eQQI7fvc7ujPeoiIc4NaASqZ4XWLjLizBESnR2ZLLrOmcyZXMbIdDryKRIVQ"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/equipment"
+							},
+							"response": []
+						},
+						{
+							"name": "Update equipment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJob2lpQGljbG91ZC5jb20iLCJncm91cHMiOlsiQWRtaW4iXSwiaWF0IjoxNzAwNTEyNTAwLCJleHAiOjE3MDA1OTg5MDAsImp0aSI6ImI4NDU1Zjg3LTM2NDktNDlhZC1hMWJkLTVkYjRmYTVkNTMwYiJ9.ToM1uqXLiq9_a0a-dZGOFnUasoViqXgApQh6Uud5HwvMxOoNH-GaF1yZF_o9bPPvMXIgmoL3KnZOp8n4vfeBAME5mF4Sy7CWq6AwHieZtBEzc3iKL0aZzyZa614ztC7UUb5w-XL2Ly5pCaYQzqb30mRl4ZkfQGNZdVpAPnIy4lq-_8SlxXP3iOAE3vHYII93UoVEPhdjKYTCnJ02HnyCm22p-iYxazZ0L3PLvwPpCD4kcHohR1Hf9B94suLyRZ8Ns6Sg8qWiOJTnJ-w-rWkl295xuiWlj31ffNZWtftB_jaElB-1ujRIWU90UlyqsGOZ36qlZbRRorFB45Du6SDIaA"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Ume\",\r\n  \"beschreibung\": \"Ein einfacher Schreibtisch mit Stuhl\",\r\n  \"preis\": 20.50,\r\n  \"rooms\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/equipment/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Create equipment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJNaXRnbGllZCJdLCJpYXQiOjE3MDA0ODQ2MDQsImV4cCI6MTcwMDU3MTAwNCwianRpIjoiNWNkNTk5N2ItYThjMi00ZGI4LWEyMTgtOGMyNzY4NjgzMDdlIn0.W1-wS_Q3qNtlNb03lraNZyfAtV3wqMWElvoDYczDdB8fmXy0YKlilf8Fvo4yy3WZWRK72WcG1KeJ9ameHvvLIHfVnG1sd60QtcLSq9hOvyHWHuGXqUFL82Is4zJ2nWEAxFtg9xEIemlSaTQGhyAF_aMkMydxVD2FGnRIEGi9qooiVl3GVX7Ai4uA0G-vuBuF9VoTxP78MLiL01BHZ6EfsU4aTHwK1igSamO_PTYa3VIaAU3pfIpnMD_CB5x4yaqjCOFfnjDPtktNCQhT-VvVmT5BJ4eQQI7fvc7ujPeoiIc4NaASqZ4XWLjLizBESnR2ZLLrOmcyZXMbIdDryKRIVQ"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Schreibtisch\",\r\n  \"beschreibung\": \"Ein einfacher Schreibtisch mit Stuhl\",\r\n  \"preis\": 20.50,\r\n  \"rooms\": [{\"id\": 1},{\"id\": 2}]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/equipment"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete equipment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJBZG1pbiJdLCJpYXQiOjE3MDA0OTA2ODYsImV4cCI6MTcwMDU3NzA4NiwianRpIjoiYTQwNjljYjgtZjA3MC00NTNiLWEwMDMtMGVmNGZkODYyNDE4In0.BJcWYiKQGQ06FJ4Eb1Ami1Kf9tfVOWzLelHoRe_Gp5EswwKAvTOWepWKhZ_BhfFpbZW4w1mcpG8iNiu69larNoTmPF-pP9uEXmONTbsnsWDXr2A6QY4GEAGHlzszPq_Qy8Ce3SgyHDVD8r8CUYLIgJc2Rm3RUSo0WK9p2fTrDBErgxP8rxxLSjStfsbmt2FfC1njnMfhCUKU6ljup4wfTNUoQYLZOeBT5VA8uhk_iHlRevzbWwsAzOOLiQCpNzdWOtz_uJqpXuT-5_zBs0itKCHIvh5c2Uzkuvtlv9UkQ3ZyAc6t6WzFie26fUMz-bbBmaXLxtDHWQQ-CyZfFJ2D9A"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8080/equipment/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "All users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJob2lpQGljbG91ZC5jb20iLCJncm91cHMiOlsiQWRtaW4iXSwiaWF0IjoxNzAwNTEyNTAwLCJleHAiOjE3MDA1OTg5MDAsImp0aSI6ImI4NDU1Zjg3LTM2NDktNDlhZC1hMWJkLTVkYjRmYTVkNTMwYiJ9.ToM1uqXLiq9_a0a-dZGOFnUasoViqXgApQh6Uud5HwvMxOoNH-GaF1yZF_o9bPPvMXIgmoL3KnZOp8n4vfeBAME5mF4Sy7CWq6AwHieZtBEzc3iKL0aZzyZa614ztC7UUb5w-XL2Ly5pCaYQzqb30mRl4ZkfQGNZdVpAPnIy4lq-_8SlxXP3iOAE3vHYII93UoVEPhdjKYTCnJ02HnyCm22p-iYxazZ0L3PLvwPpCD4kcHohR1Hf9B94suLyRZ8Ns6Sg8qWiOJTnJ-w-rWkl295xuiWlj31ffNZWtftB_jaElB-1ujRIWU90UlyqsGOZ36qlZbRRorFB45Du6SDIaA"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/user"
+							},
+							"response": []
+						},
+						{
+							"name": "All users no Token",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/user"
+							},
+							"response": []
+						},
+						{
+							"name": "All users falscher Token",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "fjniewnfojewnfoe"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/user"
+							},
+							"response": []
+						},
+						{
+							"name": "Create new User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrYXNkcmV3cmVxMzNza2tAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJBZG1pbiJdLCJpYXQiOjE3MDA0MzQ1MTUsImV4cCI6MTcwMDUyMDkxNSwianRpIjoiODE1NDRjMDktZDI5Yy00ODdkLThhM2ItNmFkMTdjNThkNzU3In0.P9ZemiBHx0OPeQD1NFxy78uGgYGPIfgtBnjqU1KGOOtyBDJJkAwvNXTrH1Gl3KCjB84S8V5VS1ty-8WUbbUd4EtKk9QLIW-mc050IPglcHxk4R2D4t9Z6Q6LSsc_b9QcKyWJGSj8o0XW28PuGzC1CI5Or2H54hRmwIA5x2zGWJidP6Z5tGzIZDpuBll2BvD4C1oxnxNSK8x-9sHmufXVpY7_eBnxkjsHDWMIozulT83fQ6C41s_Uq8TEf0imeckUU12xb8u2VsLFyEi9CZUyESvwGXoy6NkSEciruokLmZ43KpDthoxBxDKYvbswedheJ50VUQbgnimuUPqjW_M-Yg"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"Mitgliedu2ser2@icloud.com\",\r\n    \"password\": \"12345\",\r\n    \"firstName\": \"TestUser\",\r\n    \"lastName\": \"Kusi\",\r\n    \"role\": \"Mitglied\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/user"
+							},
+							"response": []
+						},
+						{
+							"name": "Create new User False Data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrYXNkcmV3cmVxMzNza2tAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJBZG1pbiJdLCJpYXQiOjE3MDA0MzQ1MTUsImV4cCI6MTcwMDUyMDkxNSwianRpIjoiODE1NDRjMDktZDI5Yy00ODdkLThhM2ItNmFkMTdjNThkNzU3In0.P9ZemiBHx0OPeQD1NFxy78uGgYGPIfgtBnjqU1KGOOtyBDJJkAwvNXTrH1Gl3KCjB84S8V5VS1ty-8WUbbUd4EtKk9QLIW-mc050IPglcHxk4R2D4t9Z6Q6LSsc_b9QcKyWJGSj8o0XW28PuGzC1CI5Or2H54hRmwIA5x2zGWJidP6Z5tGzIZDpuBll2BvD4C1oxnxNSK8x-9sHmufXVpY7_eBnxkjsHDWMIozulT83fQ6C41s_Uq8TEf0imeckUU12xb8u2VsLFyEi9CZUyESvwGXoy6NkSEciruokLmZ43KpDthoxBxDKYvbswedheJ50VUQbgnimuUPqjW_M-Yg"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{qefqeinfqejfipeqjgüoüwngpienfpie",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": "http://localhost:8080/user"
+							},
+							"response": []
+						},
+						{
+							"name": "Create new User Ohne Body Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrYXNkcmV3cmVxMzNza2tAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJBZG1pbiJdLCJpYXQiOjE3MDA0MzQ1MTUsImV4cCI6MTcwMDUyMDkxNSwianRpIjoiODE1NDRjMDktZDI5Yy00ODdkLThhM2ItNmFkMTdjNThkNzU3In0.P9ZemiBHx0OPeQD1NFxy78uGgYGPIfgtBnjqU1KGOOtyBDJJkAwvNXTrH1Gl3KCjB84S8V5VS1ty-8WUbbUd4EtKk9QLIW-mc050IPglcHxk4R2D4t9Z6Q6LSsc_b9QcKyWJGSj8o0XW28PuGzC1CI5Or2H54hRmwIA5x2zGWJidP6Z5tGzIZDpuBll2BvD4C1oxnxNSK8x-9sHmufXVpY7_eBnxkjsHDWMIozulT83fQ6C41s_Uq8TEf0imeckUU12xb8u2VsLFyEi9CZUyESvwGXoy6NkSEciruokLmZ43KpDthoxBxDKYvbswedheJ50VUQbgnimuUPqjW_M-Yg"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/user"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJBZG1pbiJdLCJpYXQiOjE3MDA0OTA2ODYsImV4cCI6MTcwMDU3NzA4NiwianRpIjoiYTQwNjljYjgtZjA3MC00NTNiLWEwMDMtMGVmNGZkODYyNDE4In0.BJcWYiKQGQ06FJ4Eb1Ami1Kf9tfVOWzLelHoRe_Gp5EswwKAvTOWepWKhZ_BhfFpbZW4w1mcpG8iNiu69larNoTmPF-pP9uEXmONTbsnsWDXr2A6QY4GEAGHlzszPq_Qy8Ce3SgyHDVD8r8CUYLIgJc2Rm3RUSo0WK9p2fTrDBErgxP8rxxLSjStfsbmt2FfC1njnMfhCUKU6ljup4wfTNUoQYLZOeBT5VA8uhk_iHlRevzbWwsAzOOLiQCpNzdWOtz_uJqpXuT-5_zBs0itKCHIvh5c2Uzkuvtlv9UkQ3ZyAc6t6WzFie26fUMz-bbBmaXLxtDHWQQ-CyZfFJ2D9A"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8080/user/4"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user false Id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJBZG1pbiJdLCJpYXQiOjE3MDA0OTA2ODYsImV4cCI6MTcwMDU3NzA4NiwianRpIjoiYTQwNjljYjgtZjA3MC00NTNiLWEwMDMtMGVmNGZkODYyNDE4In0.BJcWYiKQGQ06FJ4Eb1Ami1Kf9tfVOWzLelHoRe_Gp5EswwKAvTOWepWKhZ_BhfFpbZW4w1mcpG8iNiu69larNoTmPF-pP9uEXmONTbsnsWDXr2A6QY4GEAGHlzszPq_Qy8Ce3SgyHDVD8r8CUYLIgJc2Rm3RUSo0WK9p2fTrDBErgxP8rxxLSjStfsbmt2FfC1njnMfhCUKU6ljup4wfTNUoQYLZOeBT5VA8uhk_iHlRevzbWwsAzOOLiQCpNzdWOtz_uJqpXuT-5_zBs0itKCHIvh5c2Uzkuvtlv9UkQ3ZyAc6t6WzFie26fUMz-bbBmaXLxtDHWQQ-CyZfFJ2D9A"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8080/user/999"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user No id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJBZG1pbiJdLCJpYXQiOjE3MDA0OTA2ODYsImV4cCI6MTcwMDU3NzA4NiwianRpIjoiYTQwNjljYjgtZjA3MC00NTNiLWEwMDMtMGVmNGZkODYyNDE4In0.BJcWYiKQGQ06FJ4Eb1Ami1Kf9tfVOWzLelHoRe_Gp5EswwKAvTOWepWKhZ_BhfFpbZW4w1mcpG8iNiu69larNoTmPF-pP9uEXmONTbsnsWDXr2A6QY4GEAGHlzszPq_Qy8Ce3SgyHDVD8r8CUYLIgJc2Rm3RUSo0WK9p2fTrDBErgxP8rxxLSjStfsbmt2FfC1njnMfhCUKU6ljup4wfTNUoQYLZOeBT5VA8uhk_iHlRevzbWwsAzOOLiQCpNzdWOtz_uJqpXuT-5_zBs0itKCHIvh5c2Uzkuvtlv9UkQ3ZyAc6t6WzFie26fUMz-bbBmaXLxtDHWQQ-CyZfFJ2D9A"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8080/user"
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJob2lpQGljbG91ZC5jb20iLCJncm91cHMiOlsiQWRtaW4iXSwiaWF0IjoxNzAwNTEyNTAwLCJleHAiOjE3MDA1OTg5MDAsImp0aSI6ImI4NDU1Zjg3LTM2NDktNDlhZC1hMWJkLTVkYjRmYTVkNTMwYiJ9.ToM1uqXLiq9_a0a-dZGOFnUasoViqXgApQh6Uud5HwvMxOoNH-GaF1yZF_o9bPPvMXIgmoL3KnZOp8n4vfeBAME5mF4Sy7CWq6AwHieZtBEzc3iKL0aZzyZa614ztC7UUb5w-XL2Ly5pCaYQzqb30mRl4ZkfQGNZdVpAPnIy4lq-_8SlxXP3iOAE3vHYII93UoVEPhdjKYTCnJ02HnyCm22p-iYxazZ0L3PLvwPpCD4kcHohR1Hf9B94suLyRZ8Ns6Sg8qWiOJTnJ-w-rWkl295xuiWlj31ffNZWtftB_jaElB-1ujRIWU90UlyqsGOZ36qlZbRRorFB45Du6SDIaA"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 5,\r\n    \"email\": \"nasinke@icloud.com\",\r\n    \"password\": \"12345\",\r\n    \"buchungen\": [],\r\n    \"role\": \"Barasko\",\r\n    \"lastName\": \"Kusi\",\r\n    \"firstName\": \"TestUser\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/user/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Update User No Id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJob2lpQGljbG91ZC5jb20iLCJncm91cHMiOlsiQWRtaW4iXSwiaWF0IjoxNzAwNTEyNTAwLCJleHAiOjE3MDA1OTg5MDAsImp0aSI6ImI4NDU1Zjg3LTM2NDktNDlhZC1hMWJkLTVkYjRmYTVkNTMwYiJ9.ToM1uqXLiq9_a0a-dZGOFnUasoViqXgApQh6Uud5HwvMxOoNH-GaF1yZF_o9bPPvMXIgmoL3KnZOp8n4vfeBAME5mF4Sy7CWq6AwHieZtBEzc3iKL0aZzyZa614ztC7UUb5w-XL2Ly5pCaYQzqb30mRl4ZkfQGNZdVpAPnIy4lq-_8SlxXP3iOAE3vHYII93UoVEPhdjKYTCnJ02HnyCm22p-iYxazZ0L3PLvwPpCD4kcHohR1Hf9B94suLyRZ8Ns6Sg8qWiOJTnJ-w-rWkl295xuiWlj31ffNZWtftB_jaElB-1ujRIWU90UlyqsGOZ36qlZbRRorFB45Du6SDIaA"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 5,\r\n    \"email\": \"nasinke@icloud.com\",\r\n    \"password\": \"12345\",\r\n    \"buchungen\": [],\r\n    \"role\": \"Barasko\",\r\n    \"lastName\": \"Kusi\",\r\n    \"firstName\": \"TestUser\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/user/"
+							},
+							"response": []
+						},
+						{
+							"name": "Update User No Body",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJob2lpQGljbG91ZC5jb20iLCJncm91cHMiOlsiQWRtaW4iXSwiaWF0IjoxNzAwNTEyNTAwLCJleHAiOjE3MDA1OTg5MDAsImp0aSI6ImI4NDU1Zjg3LTM2NDktNDlhZC1hMWJkLTVkYjRmYTVkNTMwYiJ9.ToM1uqXLiq9_a0a-dZGOFnUasoViqXgApQh6Uud5HwvMxOoNH-GaF1yZF_o9bPPvMXIgmoL3KnZOp8n4vfeBAME5mF4Sy7CWq6AwHieZtBEzc3iKL0aZzyZa614ztC7UUb5w-XL2Ly5pCaYQzqb30mRl4ZkfQGNZdVpAPnIy4lq-_8SlxXP3iOAE3vHYII93UoVEPhdjKYTCnJ02HnyCm22p-iYxazZ0L3PLvwPpCD4kcHohR1Hf9B94suLyRZ8Ns6Sg8qWiOJTnJ-w-rWkl295xuiWlj31ffNZWtftB_jaElB-1ujRIWU90UlyqsGOZ36qlZbRRorFB45Du6SDIaA"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/user/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Booking status",
+					"item": [
+						{
+							"name": "Get All Booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiI0MzI0M0BpY2xvdWQuY29tIiwiZ3JvdXBzIjpbIkFkbWluIl0sImlhdCI6MTcwMDUxNDQ5OSwiZXhwIjoxNzAwNjAwODk5LCJqdGkiOiI5NmFmMjJiYi00YTQ0LTQ1MWYtODdlZS02NTUwMjA3ZDRlODEifQ.IUdVGHChV0bBOYsg0k6qnlPNRuxaOAgAvxB63jbCE9_7w5P7l8sxCGzIwSSW15lAHn4mdvTR2D8C5bMZ0c0fw9D_xd5r8ijBDP3D7bc27eRrzVZWrry3gn3Q-ok1C8QX9Rq3madWspcBQ9iGf5FNi6US2qk8IxtvBc51niU1ynbte7eKwxFRF4KmYZykoja-SqBtmG5opKruq0acx_T7B8eSu7oOIe0eucVQlK-jv2IANzysTB_9ZnMx97CoACc0vsAnXN2m8gjNTpFf_d3HdCft_IwvnPFHseVMzdkRCZfJd4ncjnHpRe3TebKQ_48cFNdrZCzBt8CwX1CZOeCh7Q"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080//booking/admin"
+							},
+							"response": []
+						},
+						{
+							"name": "accept booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiI0MzI0M0BpY2xvdWQuY29tIiwiZ3JvdXBzIjpbIkFkbWluIl0sImlhdCI6MTcwMDUxMzkxNiwiZXhwIjoxNzAwNjAwMzE2LCJqdGkiOiIzODVkOTBlZi0xMTg3LTQ1NGItYWFhMy0xMGE3Mzc4Y2VhMTMifQ.gdYpZsZ3ulIFr7m61_LeNA3vqdTE3D_j18QtI79oG-lQIiaAva_aP-dXjdcMuNCbn_4wMbzMX6BZY8K2Zb2e7XJmk2doMx2U43GwnSAgA4TfB-a9hkwlTZxBcIB2Yb0bvq19HaQWK1no5M6_o4ggH-E251ilHvVINK3XG4owcrF5hQCvHVg-aWs5N-UT1D29_LS3e5Wuv4pKsTbvfohmbQJhSSDRCmGzThBA_oXJqJYRJ5oIXCZ-I7mH_-JYLh8N6NKj0W99m2hDtpBR1KYywKu_Trc90rTJ_Y-ocRvdyEmeQ_jO2TfFQu55V-ZUFx0CMetrv3BaGLrpw1CRXOP1rA"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"url": "http://localhost:8080//booking/admin/2/accept"
+							},
+							"response": []
+						},
+						{
+							"name": "decline booking",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiI0MzI0M0BpY2xvdWQuY29tIiwiZ3JvdXBzIjpbIkFkbWluIl0sImlhdCI6MTcwMDUxNDQ5OSwiZXhwIjoxNzAwNjAwODk5LCJqdGkiOiI5NmFmMjJiYi00YTQ0LTQ1MWYtODdlZS02NTUwMjA3ZDRlODEifQ.IUdVGHChV0bBOYsg0k6qnlPNRuxaOAgAvxB63jbCE9_7w5P7l8sxCGzIwSSW15lAHn4mdvTR2D8C5bMZ0c0fw9D_xd5r8ijBDP3D7bc27eRrzVZWrry3gn3Q-ok1C8QX9Rq3madWspcBQ9iGf5FNi6US2qk8IxtvBc51niU1ynbte7eKwxFRF4KmYZykoja-SqBtmG5opKruq0acx_T7B8eSu7oOIe0eucVQlK-jv2IANzysTB_9ZnMx97CoACc0vsAnXN2m8gjNTpFf_d3HdCft_IwvnPFHseVMzdkRCZfJd4ncjnHpRe3TebKQ_48cFNdrZCzBt8CwX1CZOeCh7Q"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"url": "http://localhost:8080//booking/admin/1/decline"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Zusätzliche Anforderungen",
+					"item": [
+						{
+							"name": "Room erstellen",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiI0MzI0M0BpY2xvdWQuY29tIiwiZ3JvdXBzIjpbIkFkbWluIl0sImlhdCI6MTcwMDUxMzkxNiwiZXhwIjoxNzAwNjAwMzE2LCJqdGkiOiIzODVkOTBlZi0xMTg3LTQ1NGItYWFhMy0xMGE3Mzc4Y2VhMTMifQ.gdYpZsZ3ulIFr7m61_LeNA3vqdTE3D_j18QtI79oG-lQIiaAva_aP-dXjdcMuNCbn_4wMbzMX6BZY8K2Zb2e7XJmk2doMx2U43GwnSAgA4TfB-a9hkwlTZxBcIB2Yb0bvq19HaQWK1no5M6_o4ggH-E251ilHvVINK3XG4owcrF5hQCvHVg-aWs5N-UT1D29_LS3e5Wuv4pKsTbvfohmbQJhSSDRCmGzThBA_oXJqJYRJ5oIXCZ-I7mH_-JYLh8N6NKj0W99m2hDtpBR1KYywKu_Trc90rTJ_Y-ocRvdyEmeQ_jO2TfFQu55V-ZUFx0CMetrv3BaGLrpw1CRXOP1rA"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"place\": \"Room3\",\r\n  \"groesse\": \"Room3\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/room"
+							},
+							"response": []
+						},
+						{
+							"name": "Room erstellen ohne Body",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiI0MzI0M0BpY2xvdWQuY29tIiwiZ3JvdXBzIjpbIkFkbWluIl0sImlhdCI6MTcwMDUxMzkxNiwiZXhwIjoxNzAwNjAwMzE2LCJqdGkiOiIzODVkOTBlZi0xMTg3LTQ1NGItYWFhMy0xMGE3Mzc4Y2VhMTMifQ.gdYpZsZ3ulIFr7m61_LeNA3vqdTE3D_j18QtI79oG-lQIiaAva_aP-dXjdcMuNCbn_4wMbzMX6BZY8K2Zb2e7XJmk2doMx2U43GwnSAgA4TfB-a9hkwlTZxBcIB2Yb0bvq19HaQWK1no5M6_o4ggH-E251ilHvVINK3XG4owcrF5hQCvHVg-aWs5N-UT1D29_LS3e5Wuv4pKsTbvfohmbQJhSSDRCmGzThBA_oXJqJYRJ5oIXCZ-I7mH_-JYLh8N6NKj0W99m2hDtpBR1KYywKu_Trc90rTJ_Y-ocRvdyEmeQ_jO2TfFQu55V-ZUFx0CMetrv3BaGLrpw1CRXOP1rA"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/room"
+							},
+							"response": []
+						},
+						{
+							"name": "Equipment erstellen",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJNaXRnbGllZCJdLCJpYXQiOjE3MDA0ODQ2MDQsImV4cCI6MTcwMDU3MTAwNCwianRpIjoiNWNkNTk5N2ItYThjMi00ZGI4LWEyMTgtOGMyNzY4NjgzMDdlIn0.W1-wS_Q3qNtlNb03lraNZyfAtV3wqMWElvoDYczDdB8fmXy0YKlilf8Fvo4yy3WZWRK72WcG1KeJ9ameHvvLIHfVnG1sd60QtcLSq9hOvyHWHuGXqUFL82Is4zJ2nWEAxFtg9xEIemlSaTQGhyAF_aMkMydxVD2FGnRIEGi9qooiVl3GVX7Ai4uA0G-vuBuF9VoTxP78MLiL01BHZ6EfsU4aTHwK1igSamO_PTYa3VIaAU3pfIpnMD_CB5x4yaqjCOFfnjDPtktNCQhT-VvVmT5BJ4eQQI7fvc7ujPeoiIc4NaASqZ4XWLjLizBESnR2ZLLrOmcyZXMbIdDryKRIVQ"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Schreibtisch\",\r\n  \"beschreibung\": \"Ein einfacher Schreibtisch mit Stuhl\",\r\n  \"preis\": 20.50,\r\n  \"rooms\": [{\"id\": 1},{\"id\": 2}]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/equipment"
+							},
+							"response": []
+						},
+						{
+							"name": "Equipment erstellen ohne Body",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJNaXRnbGllZCJdLCJpYXQiOjE3MDA0ODQ2MDQsImV4cCI6MTcwMDU3MTAwNCwianRpIjoiNWNkNTk5N2ItYThjMi00ZGI4LWEyMTgtOGMyNzY4NjgzMDdlIn0.W1-wS_Q3qNtlNb03lraNZyfAtV3wqMWElvoDYczDdB8fmXy0YKlilf8Fvo4yy3WZWRK72WcG1KeJ9ameHvvLIHfVnG1sd60QtcLSq9hOvyHWHuGXqUFL82Is4zJ2nWEAxFtg9xEIemlSaTQGhyAF_aMkMydxVD2FGnRIEGi9qooiVl3GVX7Ai4uA0G-vuBuF9VoTxP78MLiL01BHZ6EfsU4aTHwK1igSamO_PTYa3VIaAU3pfIpnMD_CB5x4yaqjCOFfnjDPtktNCQhT-VvVmT5BJ4eQQI7fvc7ujPeoiIc4NaASqZ4XWLjLizBESnR2ZLLrOmcyZXMbIdDryKRIVQ"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Schreibtisch\",\r\n  \"beschreibung\": \"Ein einfacher Schreibtisch mit Stuhl\",\r\n  \"preis\": 20.50,\r\n  \"rooms\": [{\"id\": 1},{\"id\": 2}]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/equipment"
+							},
+							"response": []
+						},
+						{
+							"name": "Liste von equipments",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3psaS5leGFtcGxlLmNvbS8iLCJ1cG4iOiJrdXNpYmxAaWNsb3VkLmNvbSIsImdyb3VwcyI6WyJNaXRnbGllZCJdLCJpYXQiOjE3MDA0ODQ2MDQsImV4cCI6MTcwMDU3MTAwNCwianRpIjoiNWNkNTk5N2ItYThjMi00ZGI4LWEyMTgtOGMyNzY4NjgzMDdlIn0.W1-wS_Q3qNtlNb03lraNZyfAtV3wqMWElvoDYczDdB8fmXy0YKlilf8Fvo4yy3WZWRK72WcG1KeJ9ameHvvLIHfVnG1sd60QtcLSq9hOvyHWHuGXqUFL82Is4zJ2nWEAxFtg9xEIemlSaTQGhyAF_aMkMydxVD2FGnRIEGi9qooiVl3GVX7Ai4uA0G-vuBuF9VoTxP78MLiL01BHZ6EfsU4aTHwK1igSamO_PTYa3VIaAU3pfIpnMD_CB5x4yaqjCOFfnjDPtktNCQhT-VvVmT5BJ4eQQI7fvc7ujPeoiIc4NaASqZ4XWLjLizBESnR2ZLLrOmcyZXMbIdDryKRIVQ"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/equipment"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
