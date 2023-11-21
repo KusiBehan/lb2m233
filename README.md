@@ -1,6 +1,6 @@
 # Coworking Space Digitalisierungsprototyp
 
-##Ausgangslage
+## Ausgangslage
 
 Ein Coworking Space in der Agglomeration von Zürich möchte in Zukunft seine Mitglieder und die Nutzung des Angebots digital über eine Webapplikation erfassen. Dazu sollte zuerst ein minimaler Prototyp realisiert werden, um den Kunden besser abholen zu können.
 
@@ -24,7 +24,7 @@ Dieses Repository enthält einen Prototypen für die digitale Erfassung der Cowo
 
 Die Daten werden in einer PostgreSQL-Datenbank gespeichert. In der Entwicklungsumgebung wird diese in der [docker-compose-yml](./.devcontainer/docker-compose.yml) konfiguriert.
 
-##Testdaten
+## Testdaten
 
 Die Testdaten befinden sich unter /workspace/src/main/java/ch/zli/m223/service/TestDataService.java die werden bei der Ausführung des Projekts gestartet (./mvnw quarkus:dev) Oder 
 View>Command Palette> Quarkus: Debug current Quarkus project.
